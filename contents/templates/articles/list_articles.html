@@ -1,0 +1,22 @@
+{% extends 'articles/base.html' %}
+{% block title %}
+    我的博客列表
+{% endblock %}
+{% block content %}
+    <div>
+        <a href="{% url 'new_article' %}">新建文章</a>
+    </div>
+    {% for article in articles %}
+        <div class="article">
+            <div class="col-sm-8">{{ article.title }}</div>
+            <div class="col-sm-2">{{ article.created_at }}</div>
+            <div class="col-sm-2">
+                <div>
+                    <a href="{% url 'edit_article' id=article.id %}" target="_blank">编辑</a>
+                    <a href="{% url 'delete_article' id=article.id %}" target="_blank">删除</a>
+                </div>
+            </div>
+{#            <div class="col-sm-2">{{ article.body }}</div>#}
+        </div>
+    {% endfor %}
+{% endblock %}

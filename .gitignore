@@ -12,5 +12,5 @@ tags
 *#
 /.idea/
 my_settings.py
-content/migrations/*
+contents/migrations/*
 project_doc

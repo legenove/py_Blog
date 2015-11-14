@@ -1,0 +1,42 @@
+{% extends 'boostrap_base.html' %}
+{% block content %}
+    <pre><code>
+// 2015-10-27 20:23
+// js: html encode & decode
+String.prototype.html = function(encode) {
+  var replace =["<b>'</b>", "'", "<b>"</b>", '"', "<b>_</b>", " ", "<b>></b>", ">", "<b><</b>", "<", "<b>&</b>", "&", "<b>¥</b>", "¥"];
+  if (encode) {
+    replace.reverse();
+  }
+  for (var i=0,str=this;i< replace.length;i+= 2) {
+    str=str.replace(new RegExp(replace[i],'g'),replace[i+1]);
+  }
+  return str;
+};
+    </code></pre>
+{% endblock %}
+
+{% block js %}
+    <script>
+        String.prototype.html = function(encode) {
+            var replace =["&#39;", "'", "&quot;", '"', "&nbsp;", " ", "&gt;", ">", "&lt;", "<", "&amp;", "&", "&yen;", "¥"];
+            if (encode) {
+                replace.reverse();
+            }
+            for (var i=0,str=this;i< replace.length;i+= 2) {
+                str=str.replace(new RegExp(replace[i],'g'),replace[i+1]);
+            }
+            return str;
+        };
+
+        $(function(){
+            $("code b").each(function(){
+                var text = $(this).text().html(true);
+                console.info($(this).text() + '....' + text);
+                if(text=='_'){text = '&nbsp;'}
+                if(text=='&amp;yen;'){text = '&yen;'} // TODO: BUG here
+                $(this).text(text);
+            })
+        });
+    </script>
+{% endblock %}

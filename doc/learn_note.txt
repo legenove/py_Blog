@@ -1,0 +1,14 @@
+* 验证是否已经安装Django及其版本号:
+python -c "import django; print(django.get_version())"
+* 创建一个Django项目:
+django-admin.py startproject mysite
+python manage.py syncdb
+python manage.py runserver 8080
+python manage.py startapp polls
+python manage.py sql polls
+* Where are the Django source files?
+python -c "
+import sys
+sys.path = sys.path[1:]
+import django
+print(django.__path__)"
