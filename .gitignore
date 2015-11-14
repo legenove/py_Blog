@@ -1,0 +1,16 @@
+*.pyc
+*.DS_Store
+*.swp
+util/local_settings.py
+bin/tornado.sh
+tags
+.progject
+.pydevproject
+.settings
+.settings/*
+*~
+*#
+/.idea/
+my_settings.py
+content/migrations/*
+project_doc
