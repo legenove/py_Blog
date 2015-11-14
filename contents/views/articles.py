@@ -11,7 +11,7 @@ from contents.models import Article
 
 def list_articles(request):
     articles = Article.objects.all().order_by('-id')
-    return render(request, "articles/list_articles.html", {'articles': articles})
+    return render(request, "articles/list.html", {'articles': articles})
     # return render(request, "articles/article_1.html", {'articles': articles})
 
 
