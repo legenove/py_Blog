@@ -12,3 +12,7 @@ body{background-color: #E9FAFF;}
 #top-navbar-items li{width:16.666%;}
 #top-navbar-holder .navbar-brand{margin-left:0;padding-left:0;padding-right:0;width:100%;:text-align:center;}
 }
+/*底部页脚*/
+#footer{border-top: 1px solid #e7e7e7;color: #777;padding-top:1em;}
+/*模版*/
+#main-content{min-height:600px;}

@@ -17,4 +17,10 @@
     </form>
 {% endblock %}
 {% block js %}
+<script src="{{ STATIC_URL }}tinymce/tinymce.jquery.js"></script>
+<script>
+    tinymce.init({
+        selector: '#body'
+    });
+</script>
 {% endblock %}
