@@ -5,6 +5,11 @@
 <meta http-equiv="Cache-Control" content="no-siteapp">
 <meta http-equiv="Cache-Control" content="no-transform">
 {% endblock %}
+{% block page_title %}
+{% endblock %}
+{% block page_header %}
+<link href="{{ STATIC_URL }}css/outside.css" rel="stylesheet">
+{% endblock %}
 {% block top_nav %}
 <nav class="navbar navbar-default">
     <div class="container-fluid" id="top-navbar-holder">
@@ -40,9 +45,13 @@
     </div>
 </nav>
 {% endblock %}
+{% block content %}
+{% endblock %}
 {% block footer %}
 <div class="container-fluid text-center" id="footer">
     <div>韩沛沛的个人博客</div>
     <div>当前博客正在建设中</div>
 </div>
+{% endblock %}
+{% block js %}
 {% endblock %}

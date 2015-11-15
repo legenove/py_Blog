@@ -9,5 +9,5 @@ def index_page(request):
 
 @login_required()
 def manage_page(request):
-    return render(request, "manage.html", {})
+    return render(request, "inner_index.html", {})
 

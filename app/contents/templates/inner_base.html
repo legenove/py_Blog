@@ -1,0 +1,61 @@
+{% extends 'boostrap_base.html' %}
+{% block page_meta %}
+<meta name="keywords" content="Passionate, Play more">
+<meta name="description" content="憨沛沛和阳酱的个人博客">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+{% endblock %}
+{% block page_title %}
+{% endblock %}
+{% block page_header %}
+<link href="{{ STATIC_URL }}css/inner.css" rel="stylesheet">
+    {% block manage_header %}
+    {% endblock %}
+{% endblock %}
+{% block top_nav %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid" id="top-navbar-holder">
+        <div class="navbar-header" id="top-navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#top-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">pp</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">PP</a>
+        </div>
+        <div class="collapse navbar-collapse" id="top-navbar-collapse">
+            <ul class="nav navbar-nav" id="top-navbar-items">
+                <li class="active">
+                    <a href="{% url 'manage_page' %}">内容管理首页<span class="sr-only">(当前页)</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'signout' %}">{{ user.username }} 退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="col-xs-3 navbar-left" id="left-nav">
+    <ul class="nav nav-stacked">
+        <li role="presentation" class="active">
+            <a href="{% url 'list_articles' %}">文章管理</a>
+        </li>
+        <li role="presentation">
+            <a href="{% url 'list_tags' %}">标签管理</a>
+        </li>
+    </ul>
+</div>
+<div class="col-xs-9">
+    {% block manage_content %}
+    {% endblock %}
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block js %}
+{% endblock %}

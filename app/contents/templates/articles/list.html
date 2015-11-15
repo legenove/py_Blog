@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
-{% block title %}
-    我的博客列表
+{% extends 'inner_base.html' %}
+{% block page_title %}
+    PP's BLOG - 管理 － 文章管理
 {% endblock %}
-{% block content %}
+{% block manage_content %}
     <div>
         <a href="{% url 'new_article' %}">新建文章</a>
     </div>

@@ -2,7 +2,7 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns(
-    'contents.views',
+    'app.contents.views',
     url(regex='^articles/list$', view='list_articles', name=u'list_articles'),
     url(regex='^articles/new$', view='new_article', name=u'new_article'),
     url(regex='^articles/edit/(?P<id>\d+)$', view='edit_article', name=u'edit_article'),

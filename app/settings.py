@@ -97,6 +97,7 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = [
     os.path.join(BASE_DIR, 'app/templates'),
     os.path.join(BASE_DIR, 'app/contents/templates'),
+    os.path.join(BASE_DIR, 'app/outside/templates'),
     ]
 DATE_FORMAT = 'Y-m-d'
 DATETIME_FORMAT = 'Y-m-d H:i'
