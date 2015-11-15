@@ -1,0 +1,70 @@
+{% extends "boostrap_base.html" %}
+
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+{% block page_title %}
+    PP's blog - 登录
+{% endblock %}
+{% block page_header %}
+    <style>
+        #sign-box form{padding-top:30px;}
+        .form-wrap{width: 400px;margin: 10px auto;padding: 30px 10px 10px;background-color: #f8f8f8;border: 10px solid #fafafa;}
+        .control-group{display: table;width: 100%;margin-bottom: 10px;}
+        .controls input{width: 100%;}
+        #sign-btn{width: 50%;}
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="row login-row">
+            {% if form.errors %}
+                <div id="error-mes">
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-error"><h4> {{ error }}</h4></div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <h2 style="text-align: center;">PP's BLOG</h2>
+            <div id="sign-box">
+                <form class="form-horizontal" method="post" action="{% url 'signin' %}">
+                    {% csrf_token %}
+
+                    <div class="form-wrap">
+
+                    <div class="control-group">
+                        <div class="control-info col-xs-2">
+                            <label class="control-label" for="id_username">账号</label>
+                        </div>
+                        <div class="controls col-xs-10">{{ form.username }}</div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="control-group">
+                        <div class="control-info col-xs-2">
+                            <label class="control-label" for="id_password">密码</label>
+                        </div>
+                        <div class="controls col-xs-10">{{ form.password }}</div>
+                    </div>
+                        <br/>
+                    <div class="control-group">
+                        <div class="controls text-center">
+                            <button class="btn btn-info" type="submit" id="sign-btn">
+                                登&nbsp;&nbsp;&nbsp;&nbsp;录
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

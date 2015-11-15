@@ -1,16 +1,19 @@
-body{background-color: #E9FAFF;}
+/*body{background-color: #E9FAFF;}*/
+body{background-color: #f8f8f8;}
 /*顶部导航*/
-.navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
-}
 @media screen and (min-width:768px){
-#top-navbar-holder{padding-left:0;padding-right: 0;}
-#top-navbar-header{width:5%;text-align: center;}
-#top-navbar-collapse{width:95%;float: left;padding-left: 0;}
-#top-navbar-items{width:100%;}
-#top-navbar-items li{width:16.666%;}
-#top-navbar-holder .navbar-brand{margin-left:0;padding-left:0;padding-right:0;width:100%;:text-align:center;}
+    #top-navbar-holder{padding-left:0;padding-right: 0;}
+    #top-navbar-header{width:5%;text-align: center;}
+    #top-navbar-collapse{width:95%;float: left;padding-left: 0;}
+    #top-navbar-items{width:100%;}
+    #top-navbar-items li{border-left: 1px solid #ccc; border-radius: 30px; width:16.666%;}
+    #top-navbar-items li.active{border-width: 2px;border-color: deepskyblue;background-color: inherit;}
+    #top-navbar-holder .navbar-brand{margin-left:0;padding-left:0;padding-right:0;width:100%;:text-align:center;}
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > .active > a:focus{
+        background-color: inherit;
+    }
 }
 /*底部页脚*/
 #footer{border-top: 1px solid #e7e7e7;color: #777;padding-top:1em;}

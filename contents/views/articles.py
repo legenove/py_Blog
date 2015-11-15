@@ -15,6 +15,7 @@ def list_articles(request):
     # return render(request, "articles/article_1.html", {'articles': articles})
 
 
+@login_required()
 def new_article(request):
     if request.method == 'POST':
         article = Article()
@@ -27,6 +28,7 @@ def new_article(request):
     return render(request, "articles/new.html", {'article': article})
 
 
+@login_required()
 def edit_article(request, id):
     try:
         article = Article.objects.get(pk=id)
