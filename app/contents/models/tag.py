@@ -1,6 +1,7 @@
 # coding=utf-8
 from django.db import models
-from contents.models.article import Article
+
+from app.contents.models.article import Article
 
 
 class Tag(models.Model):
