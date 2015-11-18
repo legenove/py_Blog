@@ -1,0 +1,7 @@
+{% extends 'outside_base.html' %}
+{% block page_title %}
+    PP's BLOG - {{ article.title }}
+{% endblock %}
+{% block content %}
+    {% include 'outside_articles/_article.html' with article=article %}
+{% endblock %}

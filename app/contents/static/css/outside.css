@@ -1,0 +1,5 @@
+/*articles*/
+.items{margin-top: 1em;}
+.item{background-color: #fff;margin-bottom: 0.5em;border: 1px solid #ddd;}
+.item-body{display: table;width: 100%;}
+.item-head{background-color: #eee;display: table;width: 100%;}

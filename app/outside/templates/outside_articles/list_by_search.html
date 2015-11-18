@@ -1,0 +1,12 @@
+{% extends 'outside_base.html' %}
+{% block page_title %}
+PP's BLOG - serch:{{ keyword }}
+{% endblock %}
+{% block content %}
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="{% url 'list_articles_by_search' %}?keyword={{ keyword }}">极简模式</a></li>
+    <li role="presentation" class="active"><a href="#">预览模式</a></li>
+    <li role="presentation"><a href="{% url 'list_articles_by_search' %}?keyword={{ keyword }}">全文模式</a></li>
+</ul>
+{% include 'outside_articles/_list.html' with articles=articles %}
+{% endblock %}

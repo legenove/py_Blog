@@ -9,4 +9,6 @@ urlpatterns = patterns(
     url(regex='^articles/delete/(?P<id>\d+)$', view='delete_article', name=u'delete_article'),
 
     url(regex='^tags/list', view='list_tags', name=u'list_tags'),
+    url(regex='^tags/add', view='add_tag', name=u'add_tag'),
+    url(regex='^tags/del', view='del_tag', name=u'del_tag'),
 )

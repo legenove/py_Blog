@@ -8,8 +8,8 @@
     {% block page_meta %}
     {% endblock %}
     <title>
-    {% block page_title %}
-    {% endblock %}
+        {% block page_title %}
+        {% endblock %}
     </title>
     <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
@@ -18,23 +18,65 @@
     {% endblock %}
 </head>
 <body>
-    <div class="nav">
-        {% block top_nav %}
-        {% endblock %}
-    </div>
-    <div class="container-fluid">
-        <div class="main-content" id="main-content">
-            {% block content %}
-            {% endblock %}
-        </div>
-    </div>
-    <div class="footer">
-        {% block footer %}
-        {% endblock %}
-    </div>
-    <script src="{% static 'js/jquery-1.11.3.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-    {% block js %}
+<div class="nav">
+    {% block top_nav %}
     {% endblock %}
+</div>
+<div class="container-fluid">
+    <div class="main-content" id="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+<div class="footer">
+    {% block footer %}
+    {% endblock %}
+</div>
+<script src="{% static 'js/jquery-1.11.3.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+<script>
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+    function set_checkbox(dom){
+        if(['','0', 'false'].indexOf($(dom).val().toLowerCase())>-1){
+            $(dom).removeAttr('checked').val('False');
+        }else{
+            $(dom).attr('checked', 'true').val('True');
+        }
+        function f(dom){
+            if($(dom).is(':checked')){
+                $(dom).attr('checked', 'true').val('True');
+            } else {
+                $(dom).removeAttr('checked').val('False');
+            }
+        }
+        $(dom).unbind('click').bind('click',function(){f(dom);});
+    }
+</script>
+
+{% block js %}
+{% endblock %}
 </body>
 </html>

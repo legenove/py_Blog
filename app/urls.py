@@ -15,4 +15,8 @@ urlpatterns = patterns('',
 
     url(r'^signin/$', 'django.contrib.auth.views.login', {'template_name': 'signin.html'}, name="signin"),
     url(r'^signout/$', 'django.contrib.auth.views.logout_then_login',  name="signout"),
+
+    url(r'^a/(?P<article_id>\d+)', 'outside.views.articles.show_article', name='show_article'),
+    url(r'^t/(?P<tag_id>\d+)', 'outside.views.articles.list_articles_by_tag', name='list_articles_by_tag'),
+    url(r'^s$', 'outside.views.articles.list_articles_by_search', name='list_articles_by_search'),
 )

@@ -3,11 +3,15 @@
     PP's BLOG - 管理 － 文章管理
 {% endblock %}
 {% block manage_content %}
-    <div>
-        <a href="{% url 'new_article' %}">新建文章</a>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'manage_page' %}">管理首页</a></li>
+        <li class="active">文章管理</li>
+    </ol>
+    <div class="op-bar">
+        <a class="btn btn-link" href="{% url 'new_article' %}">新建文章</a>
     </div>
     {% for article in articles %}
-        <div class="article">
+        <div class="items">
             <div class="col-sm-8">{{ article.title }}</div>
             <div class="col-sm-2">{{ article.created_at }}</div>
             <div class="col-sm-2">
@@ -19,4 +23,6 @@
 {#            <div class="col-sm-2">{{ article.body }}</div>#}
         </div>
     {% endfor %}
+{% endblock %}
+{% block js %}
 {% endblock %}

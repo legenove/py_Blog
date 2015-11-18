@@ -1,0 +1,8 @@
+<div class="items">
+    {% for article in articles %}
+        {% include 'outside_articles/_article.html' with article=article %}
+    {% endfor %}
+    {% if not articles %}
+    <div class="col-sm-12"> 很抱歉, 找不到相关博文</div>
+    {% endif %}
+</div>

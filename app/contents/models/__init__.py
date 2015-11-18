@@ -1,2 +1,2 @@
-from app.contents.models.article import *
-from app.contents.models.tag import *
+from article import *
+from tag import *
