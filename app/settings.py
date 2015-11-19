@@ -93,6 +93,7 @@ USE_TZ = True
 
 LOGIN_URL = '/signin'
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = '/'
 # STATIC_ROOT = '/static/'
 # TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'mysite/templates')]
 TEMPLATE_DIRS = [
@@ -104,8 +105,7 @@ DATE_FORMAT = 'Y-m-d'
 DATETIME_FORMAT = 'Y-m-d H:i'
 TIME_FORMAT = 'H:i'
 TAG_IN_INDEX = (
-    # [u'技术', u'技术宅'],
-    [u'art', u'技术宅'],
+    [u'技术', u'技术宅'],
     [u'生活', u'伪文艺'],
     [u'挑战', u'爱折腾'],
     [u'享乐', u'贪享乐']

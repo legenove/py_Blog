@@ -26,12 +26,13 @@
             <a class="navbar-brand" href="/">PP</a>
         </div>
         <div class="collapse navbar-collapse" id="top-navbar-collapse">
+            <input type="hidden" id="current_tag_id" value="{{ current_tag_id }}"/>
             <ul class="nav navbar-nav" id="top-navbar-items">
-                <li class="active"><a href="/">首页<span class="sr-only">(当前页)</span></a></li>
+                <li data-tag-id=""><a href="/">首页<span class="sr-only">(当前页)</span></a></li>
                 {% for tag in nav_tags %}
-                    <li><a href="{% url 'list_articles_by_tag' tag_id=tag.id %}">{{ tag.title }}</a></li>
+                    <li data-tag-id="{{ tag.id }}"><a href="{% url 'list_articles_by_tag' tag_id=tag.id %}">{{ tag.title }}</a></li>
                 {% endfor %}
-                <li><a href="#">联系我们</a></li>
+                <li data-tag-id="-1"><a href="#">联系我们</a></li>
             </ul>
             <!--form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
@@ -55,4 +56,34 @@
 </div>
 {% endblock %}
 {% block js %}
+    <script>
+        var tag_id = $("#current_tag_id").val();
+        if(tag_id == 0){
+            $('#top-navbar-collapse li:first').addClass('active');
+        } else if(tag_id == -1){
+            $('#top-navbar-collapse li:last').addClass('active');
+        } else if(tag_id > 0){
+            $('#top-navbar-collapse li').each(function(){
+                console.info($(this).val());
+                if($(this).data('tag-id') == tag_id){
+                    $(this).addClass('active');
+                }
+            });
+        }
+
+        $('#top-navbar-collapse li').hover(function(){
+            var stay = $(this).hasClass('active');
+            if(!stay) {
+                $(this).attr('stay', stay);
+                $(this).addClass('active');
+            }
+        },function(){
+            if( $(this).hasClass('active') && $(this).attr('stay') == 'false'){
+                $(this).removeClass('active');
+                $(this).data('stay', false)
+            }
+        })
+    </script>
+    {% block outside_js %}
+    {% endblock %}
 {% endblock %}

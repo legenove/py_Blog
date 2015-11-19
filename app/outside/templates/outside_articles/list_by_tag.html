@@ -4,9 +4,15 @@ PP's BLOG - {{ tag.title }}
 {% endblock %}
 {% block content %}
 <ul class="nav nav-tabs">
-    <li role="presentation"><a href="{% url 'list_articles_by_tag' tag_id=tag.id %}">极简模式</a></li>
-    <li role="presentation" class="active"><a href="#">预览模式</a></li>
-    <li role="presentation"><a href="{% url 'list_articles_by_tag' tag_id=tag.id %}">全文模式</a></li>
+    <li role="presentation" {% if mode == 'simple' %}class="active"{% endif %} >
+        <a href="{% url 'list_articles_by_tag' tag_id=tag.id %}?mode=simple">极简模式</a>
+    </li>
+    <li role="presentation" {% if mode == 'preview' %}class="active"{% endif %} >
+        <a href="{% url 'list_articles_by_tag' tag_id=tag.id %}?mode=preview">预览模式</a>
+    </li>
+    <li role="presentation" {% if mode == 'full' %}class="active"{% endif %} >
+        <a href="{% url 'list_articles_by_tag' tag_id=tag.id %}?mode=full">全文模式</a>
+    </li>
 </ul>
 {% include 'outside_articles/_list.html' with articles=articles %}
 {% endblock %}

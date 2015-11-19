@@ -12,7 +12,12 @@
             <a href="{% url 'delete_article' id=article.id %}" target="_blank">删除</a>
         </div>
     </div>
+    {% if mode != 'simple' %}
     <div class="item-body">
         <div class="col-sm-12">{{ article.body | safe }}</div>
+        <!--<div class="col-sm-12">-->
+            <!--<a class="more" href="#">显示全部</a>-->
+        <!--</div>-->
     </div>
+    {% endif %}
 </div>

@@ -3,6 +3,8 @@ from django.db import models
 
 
 class Article(models.Model):
+    SCAN_MODES = ['simple', 'preview', 'full']
+
     title = models.CharField(max_length=255, verbose_name="标题", default='')
     body = models.TextField(verbose_name='正文')
     is_private = models.BooleanField(verbose_name='是否私密', default=False)

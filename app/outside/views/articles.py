@@ -21,14 +21,16 @@ def list_articles_by_tag(request, tag_id):
         return HttpResponseBadRequest('invalid id')
     article_ids = [x.article_id for x in ArticleTag.objects.filter(tag=tag)]
     articles = Article.objects.filter(id__in=article_ids)
+    mode = request.GET.get('mode', 'preview')
     return render(request, "outside_articles/list_by_tag.html",
-                  {'articles': articles, 'tag': tag, 'nav_tags': request.nav_tags})
+                  {'articles': articles, 'tag': tag, 'nav_tags': request.nav_tags, 'mode': mode, 'current_tag_id': tag_id})
 
 
 @nav_tags_required()
 def list_articles_by_search(request):
     keyword = request.GET.get('keyword', '')
     articles = Article.objects.filter(title__contains=keyword)
+    mode = request.GET.get('mode', 'preview')
     return render(request, "outside_articles/list_by_search.html",
-                  {'articles': articles, 'keyword': keyword, 'nav_tags': request.nav_tags})
+                  {'articles': articles, 'keyword': keyword, 'nav_tags': request.nav_tags, 'mode': mode})
 

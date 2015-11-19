@@ -4,9 +4,15 @@ PP's BLOG - serch:{{ keyword }}
 {% endblock %}
 {% block content %}
 <ul class="nav nav-tabs">
-    <li role="presentation"><a href="{% url 'list_articles_by_search' %}?keyword={{ keyword }}">极简模式</a></li>
-    <li role="presentation" class="active"><a href="#">预览模式</a></li>
-    <li role="presentation"><a href="{% url 'list_articles_by_search' %}?keyword={{ keyword }}">全文模式</a></li>
+    <li role="presentation" {% if mode == 'simple' %}class="active"{% endif %} >
+        <a href="{% url 'list_articles_by_search' %}?keyword={{ keyword }}&mode=simple">极简模式</a>
+    </li>
+    <li role="presentation" {% if mode == 'preview' %}class="active"{% endif %} >
+        <a href="{% url 'list_articles_by_search' %}?keyword={{ keyword }}&mode=preview">预览模式</a>
+    </li>
+    <li role="presentation" {% if mode == 'full' %}class="active"{% endif %} >
+        <a href="{% url 'list_articles_by_search' %}?keyword={{ keyword }}&mode=full">全文模式</a>
+    </li>
 </ul>
 {% include 'outside_articles/_list.html' with articles=articles %}
 {% endblock %}
