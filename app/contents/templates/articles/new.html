@@ -46,13 +46,16 @@
 <script src="{{ STATIC_URL }}chosen.jquery/chosen.jquery.js"></script>
 <script>
     tinymce.init({
-        selector: '#body'
+        selector: '#body',
+        plugins: ["advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+            "save table contextmenu directionality emoticons template paste textcolor"],
+        toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | link image media | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons | preview"
     });
     set_checkbox($('#is_private'));
 
     var tags = [];
     if($('#tags').val()){tags = $('#tags').val().split(';');}
-//    tags = ['sfe','xxxxx'];
     $('#_tags option').each(function(){
         if(tags.indexOf($(this).val()) > -1){$(this).attr('selected', 'selected')}
     });

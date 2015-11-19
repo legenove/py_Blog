@@ -26,7 +26,11 @@ def new_article(request):
         article = Article()
         from app.contents.models.tag import Tag
         all_tags = Tag.objects.filter(is_delete=False)
-    return render(request, "articles/new.html", {'article': article, 'tags': [], 'all_tags': all_tags})
+        article_tags = article.tags
+        article_tag_ids = ';'.join([str(x.id) for x in article_tags])
+    return render(request, "articles/new.html", {'article': article, 'tags': [], 'all_tags': all_tags,
+                                                 'article_tag_ids': article_tag_ids,
+                                                 })
 
 
 @login_required()
