@@ -1,0 +1,30 @@
+{% extends 'inner_base.html' %}
+{% block page_title %}
+    PP's BLOG - 管理 － 分类管理
+{% endblock %}
+{% block manage_content %}
+    <ol class="breadcrumb">
+        <li><a href="{% url 'manage_page' %}">管理首页</a></li>
+        <li class="active">文章管理</li>
+    </ol>
+    <div class="op-bar">
+        <a class="btn btn-link" href="{% url 'new_category' %}">新建分类</a>
+    </div>
+    {% for category in categories %}
+        <div class="items">
+            <div class="col-sm-8">
+                {{ category.title }}
+            </div>
+            <div class="col-sm-2">{{ category.created_at }}</div>
+            <div class="col-sm-2">
+                <div>
+                    <a href="{% url 'edit_category' id=category.id %}" target="_blank">编辑</a>
+                    <a href="{% url 'delete_category' id=category.id %}" target="_blank">删除</a>
+                </div>
+            </div>
+{#            <div class="col-sm-2">{{ category.body }}</div>#}
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block js %}
+{% endblock %}

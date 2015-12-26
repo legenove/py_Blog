@@ -1,5 +1,8 @@
 /*articles*/
 .items{margin-top: 1em;}
 .item{background-color: #fff;margin-bottom: 0.5em;border: 1px solid #ddd;}
+.item .item-head{font-size: 1.5em;}
+.item .item-head-op{font-size: 1em;}
+.item .item-head a{color: #333;}
 .item-body{display: table;width: 100%;}
 .item-head{background-color: #eee;display: table;width: 100%;}

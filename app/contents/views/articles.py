@@ -20,16 +20,22 @@ def new_article(request):
         article.title = request.POST.get('title', '')
         article.body = request.POST.get('body', '')
         article.is_private = request.POST.get('is_private', 'False') == 'True'
+        article.category_id = request.POST.get("category_id")
         article.save()
         return HttpResponseRedirect(reverse('list_articles'))
     else:
         article = Article()
-        from app.contents.models.tag import Tag
-        all_tags = Tag.objects.filter(is_delete=False)
+        all_tags = []
+        if request.user.is_authenticated():
+            from app.contents.models.tag import Tag
+            all_tags = Tag.objects.filter(is_delete=False)
         article_tags = article.tags
         article_tag_ids = ';'.join([str(x.id) for x in article_tags])
+        from app.contents.models.category import Category
+        categories = Category.objects.filter(is_delete=False).order_by('-id')
+
     return render(request, "articles/new.html", {'article': article, 'tags': [], 'all_tags': all_tags,
-                                                 'article_tag_ids': article_tag_ids,
+                                                 'article_tag_ids': article_tag_ids, 'categories': categories,
                                                  })
 
 
@@ -43,6 +49,7 @@ def edit_article(request, id):
         article.title = request.POST.get('title', '')
         article.body = request.POST.get('body', '')
         article.is_private = request.POST.get('is_private', 'False') == 'True'
+        article.category_id = request.POST.get("category_id")
         article.save()
         tag_ids = request.POST.get('tags', '').split(';')
         article.update_tags([int(x) for x in tag_ids])
@@ -51,17 +58,21 @@ def edit_article(request, id):
         article_tags = article.tags
         article_tag_ids = ';'.join([str(x.id) for x in article_tags])
         # article_tag_titles = ';'.join([x.title for x in article_tags])
-        from app.contents.models.tag import Tag
-        all_tags = Tag.objects.filter(is_delete=False)
+        all_tags = []
+        if request.user.is_authenticated():
+            from app.contents.models.tag import Tag
+            all_tags = Tag.objects.filter(is_delete=False)
         # for i, x in enumerate(all_tags):
         #     x.selected = x.id in article_tag_ids
+        from app.contents.models.category import Category
+        categories = Category.objects.filter(is_delete=False).order_by('-id')
         return render(request, "articles/edit.html",
                       {'article': article, 'tags': article_tags, 'all_tags': all_tags,
-                       'article_tag_ids': article_tag_ids,
+                       'article_tag_ids': article_tag_ids, 'categories': categories,
                       })
 
-
-def delete_article(request, id):
+@login_required()
+def delete_category(request, id):
     try:
         article = Article.objects.get(pk=id)
     except Article.DoesNotExist:

@@ -1,10 +1,12 @@
 # coding=utf-8
 from django.db import models
+from category import Category
 
 
 class Article(models.Model):
     SCAN_MODES = ['simple', 'preview', 'full']
 
+    category = models.ForeignKey(Category, default=1)
     title = models.CharField(max_length=255, verbose_name="标题", default='')
     body = models.TextField(verbose_name='正文')
     is_private = models.BooleanField(verbose_name='是否私密', default=False)

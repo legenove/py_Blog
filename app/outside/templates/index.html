@@ -1,68 +1,90 @@
-{% extends 'outside_base.html' %}
+{% extends 'boostrap_base.html' %}
+{% block page_meta %}
+<meta name="keywords" content="Passionate, Play more">
+<meta name="description" content="憨沛沛的个人博客">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+{% endblock %}
 {% block page_title %}
-    Passionate, Play more
+憨沛沛PP的个人博客
 {% endblock %}
 {% block page_header %}
 <style>
-    .headline-img-wrap img{width:100%;}
-    .news-box{margin-bottom:2em;}
-    /*.news-box a, .friends a{color: #333;}*/
-    .news-title{float:left;width:70%;padding-left:1em;}
-    .news-created-at{width: 30%;display: inline-block;}
-    /*.news-items{display: table;}*/
-    @media screen and (max-width:768px){
-        .news-created-at{display: none;}
-    }
+    .news-created-at{color: #999;}
 </style>
 {% endblock %}
-{% block content %}
-<div class="col-xs-6">
-    <div class="headline-img-wrap">
-        <!--<img src="http://r1.ykimg.com/05100000564809306714C01A1507EAC3">-->
-    </div>
-</div>
-<div class="col-xs-6">
-    <form class="form-inline" method="get" action="{% url 'list_articles_by_search' %}">
-        <div class="form-group">
-            <input class="form-control" name="keyword" id="keyword" placeholder="请输入搜索关键字"/>
+{% block top_nav %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid" id="top-navbar-holder">
+        <div class="navbar-header" id="top-navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#top-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">pp</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">PP</a>
         </div>
-        <button class="btn btn-info" role="button">搜索</button>
-    </form>
+        <div class="collapse navbar-collapse" id="top-navbar-collapse">
+            <input type="hidden" id="current_tag_id" value="{{ current_tag_id }}"/>
+            <ul class="nav navbar-nav" id="top-navbar-items">
+                <li data-tag-id="" class="active"><a href="/">首页<span class="sr-only">(当前页)</span></a></li>
+                <li data-tag-id="-1"><a href="#">联系我们</a></li>
+            </ul>
+            <!--form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form-->
+            <!--ul class="nav navbar-nav navbar-right" id="top-navbar-tail">
+                <li><a href="#">联系我们</a></li>
+            </ul-->
+        </div>
+    </div>
+</nav>
+{% endblock %}
+{% block content %}
+<!--<div class="col-xs-6">-->
+    <!--<div class="headline-img-wrap">-->
+        <!--&lt;!&ndash;<img src="http://img4.ph.126.net/BrV1ku100u0N12n6s6_cgg==/6597534860074595214.jpg">&ndash;&gt;-->
+        <!--&lt;!&ndash;<img src="http://pic.qiantucdn.com/58pic/13/28/04/08U58PICstc_1024.jpg">&ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
+<div class="col-xs-12">
+    <div>
+        <strong>PP</strong>(韩沛沛@1987) &nbsp;&nbsp;&nbsp;&nbsp; 北京邮电大学 > 广联达 > 优酷
+    </div>
+    <!--<form class="form-inline col-xs-6" method="get" action="{% url 'list_articles_by_search' %}">-->
+        <!--<div class="form-group">-->
+            <!--<input class="form-control" name="keyword" id="keyword" placeholder="请输入搜索关键字"/>-->
+        <!--</div>-->
+        <!--<button class="btn" role="button" style="background-color: #f8f8f8;border-color: #ccc;">搜索</button>-->
+    <!--</form>-->
+    <!--<hr/>-->
+    <!--<p class="news-header">-->
+    <!--</p>-->
     <hr/>
-    <p>
-       <strong>PP</strong>
-    </p>
-    <p>
-        韩沛沛 1987
-    </p>
-    <p>
-        北京邮电大学 > 广联达 > 优酷
-    </p>
-    <hr/>
-    {% for tag in nav_tags %}
-        <div class="news-box">
-            <div>
-                <strong>{{ tag.title_alias }}</strong>
-            </div>
-            {% for article in tag.news %}
+    <div class="news-header">
+        <strong>技术博客</strong>
+    </div>
+            {% for article in articles %}
                 <div class="news-items">
                     <div class="news-title">
                         <a href="{% url 'show_article' article_id=article.id %}">{{ article.title }}</a>
                         {% if article.is_private %}
                         [私密]
                         {% endif %}
+                        <span class="news-created-at">{{ article.created_at }}</span>
                     </div>
-                    <div class="news-created-at">
-                        {{ article.created_at }}
-                    </div>
+                    <!--<div class="news-created-at">-->
+                    <!--</div>-->
                 </div>
             {% endfor %}
-        </div>
-        <div class="clearfix"></div>
-    {% endfor %}
     <hr/>
     <div class="friends">
-        <div>
+        <div class="news-header">
             <strong>友情链接</strong>
         </div>
         <div class="col-sm-4">
@@ -76,4 +98,26 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block footer %}
+<div class="container-fluid text-center" id="footer">
+    <div>韩沛沛的个人博客</div>
+    <div>当前博客正在建设中</div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    $('#top-navbar-collapse li').hover(function(){
+        var stay = $(this).hasClass('active');
+        if(!stay) {
+            $(this).attr('stay', stay);
+            $(this).addClass('active');
+        }
+    },function(){
+        if( $(this).hasClass('active') && $(this).attr('stay') == 'false'){
+            $(this).removeClass('active');
+            $(this).data('stay', false)
+        }
+    })
+</script>
 {% endblock %}
